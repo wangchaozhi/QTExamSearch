@@ -11,10 +11,13 @@ MainWindow::MainWindow(QWidget *parent) :
     newWindow(nullptr)  // 初始化指针为 nullptr
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_TranslucentBackground);  // Make the window background transparent
+    setWindowFlags(windowFlags() | Qt::FramelessWindowHint);  // Ensure the window is frameless
+
      menuBar()->setVisible(false);
      statusBar()->setVisible(false);
     // 设置窗口为无边框样式
-       setWindowFlags(Qt::FramelessWindowHint);
+//       setWindowFlags(Qt::FramelessWindowHint);
        // 禁止调整窗口大小
        setFixedSize(size());
 
@@ -110,7 +113,7 @@ void MainWindow::paintEvent(QPaintEvent *event) {
 
     QPainterPath path;
     path.addRoundedRect(rect(), 25, 25);  // 25 是倒角的半径
-    painter.fillPath(path, Qt::white);  // 以白色填充
+    painter.fillPath(path, Qt::transparent);  // 以白色填充
 
     QPixmap bg(imagePathRc);
     painter.setClipPath(path);  // 确保背景图也应用倒角
