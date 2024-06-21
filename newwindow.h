@@ -14,6 +14,12 @@
 #include <QStandardItemModel>
 #include <QSoundEffect>
 #include <QNetworkInterface>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QDebug>
+#include <QSqlError>
+#include "mysqlmanager.h"
+#include "sqlitemanager.h"
 
 
 
@@ -36,8 +42,13 @@ private slots:
 private:
     Ui::NewWindow *ui;
     QNetworkAccessManager *networkManager;
-      QStandardItemModel *model; // Model to hold and display JSON data
-      QSoundEffect clickSound;
+    QStandardItemModel *model; // Model to hold and display JSON data
+    MySQLManager mysqlDbManager;
+    SQLiteManager sqliteDbManager;
+    QSoundEffect clickSound;
+    void initDatabase();
+    void transferDataFromMySQLToSQLite(MySQLManager& mysqlDbManager, SQLiteManager& sqliteDbManager);
+
 };
 
 #endif // NEWWINDOW_H

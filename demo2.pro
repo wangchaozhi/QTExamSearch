@@ -1,6 +1,7 @@
 QT       += core gui
 QT       += network
 QT       += multimedia
+QT       += sql
 
 
 
@@ -15,11 +16,15 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    newwindow.cpp
+    mysqlmanager.cpp \
+    newwindow.cpp \
+    sqlitemanager.cpp
 
 HEADERS += \
     mainwindow.h \
-    newwindow.h
+    mysqlmanager.h \
+    newwindow.h \
+    sqlitemanager.h
 
 FORMS += \
     mainwindow.ui \
@@ -29,6 +34,14 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+
+INCLUDEPATH += D:/dev/mysql-5.7.36-winx64/include
+LIBS += -LD:/dev/mysql-5.7.36-winx64/lib
+LIBS += -llibmysql
+
+
+
 
 RESOURCES += \
     resources.qrc
