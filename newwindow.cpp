@@ -17,9 +17,10 @@ NewWindow::NewWindow(QWidget *parent) :
     // 设置窗口始终在最前
 //       setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
     // 禁止调整窗口大小
-    setFixedSize(size());
+//    setFixedSize(size());
     ui->tableView->setModel(model);
-       model->setHorizontalHeaderLabels(QStringList() << "Question Content" << "Answer Content" << "Answer Code");
+//       model->setHorizontalHeaderLabels(QStringList() << "Question Content" << "Answer Content" << "Answer Code");
+           model->setHorizontalHeaderLabels(QStringList() << "问题" << "答案内容" << "正确答案"); // Reset headers after clear
 //    connect(ui->pushButton, &QPushButton::clicked, this, &NewWindow::on_pushButton_clicked);
     connect(networkManager, &QNetworkAccessManager::finished, this, &NewWindow::on_networkReplyFinished);
     // 设置列宽
@@ -115,8 +116,8 @@ void NewWindow::on_pushButton_clicked() {
             QSqlQuery query = sqliteDbManager.search(searchText);
 
             model->clear(); // Clear existing items
-            model->setHorizontalHeaderLabels(QStringList() << "Question Content" << "Answer Content" << "Answer Code"); // Reset headers after clear
-
+//            model->setHorizontalHeaderLabels(QStringList() << "Question Content" << "Answer Content" << "Answer Code"); // Reset headers after clear
+            model->setHorizontalHeaderLabels(QStringList() << "题目" << "答案内容" << "正确答案"); // Reset headers after clear
             while (query.next()) {
 
                 QString questionContent = query.value("question_content").toString();
@@ -160,7 +161,7 @@ void NewWindow::on_networkReplyFinished(QNetworkReply *reply)
 
             model->clear(); // 清除现有的项
             model->setHorizontalHeaderLabels(QStringList() << "Question Content" << "Answer Content" << "Answer Code"); // Reset headers after clear
-
+//            model->setHorizontalHeaderLabels(QStringList() << "问题" << "答案内容" << "正确答案"); // Reset headers after clear
             for (const QJsonValue &value : dataArray) {
                       QJsonObject obj = value.toObject();
                       QStandardItem *itemQuestion = new QStandardItem(obj["questionContent"].toString());

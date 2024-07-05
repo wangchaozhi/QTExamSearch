@@ -2,9 +2,10 @@ QT       += core gui
 QT       += network
 QT       += multimedia
 QT       += sql
+RC_FILE = appicon.rc
 
 
-
+# QMAKE_PROJECT_DEPTH = 0
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -44,4 +45,5 @@ LIBS += -llibmysql
 
 
 RESOURCES += \
+    icos.qrc \
     resources.qrc

@@ -7,4 +7,10 @@
     <qresource prefix="/images">
         <file>home2.png</file>
     </qresource>
+    <qresource prefix="/ico"/>
+    <qresource prefix="/ico" lang="zh"/>
+    <qresource prefix="/ico" lang="cn"/>
+    <qresource prefix="/icos"/>
+    <qresource prefix="/111"/>
+    <qresource prefix="/icos" lang="en"/>
 </RCC>
